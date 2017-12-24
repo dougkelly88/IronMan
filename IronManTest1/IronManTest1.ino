@@ -8,6 +8,8 @@
  */
 
  int pin = 1;
+ unsigned long start_time;
+ unsigned long duration;
  
 
 void setup() {
@@ -24,12 +26,20 @@ void loop() {
 }
 
 void onButtonPress() {
-  pinMode(pin, OUTPUT);
-  for (int idx = 0; idx <=5; idx++){
-    digitalWrite(pin, HIGH);
-    delay(1000);
-    digitalWrite(pin, LOW);
-    delay(1000);
+  // time the duration of a button press, and react accordingly
+  start_time = millis();
+  while (digitalRead(pin) == HIGH)
+  {
+    // do nothing, just wait
   }
+  duration = millis() - start_time;
+  pinMode(pin, OUTPUT);
+  for (int idx = 0; idx < 5; idx++){
+    digitalWrite(pin, HIGH);
+    delay(duration);
+    digitalWrite(pin, LOW);
+    delay(duration);
+  }
+  pinMode(pin, INPUT);
 }
 
