@@ -118,6 +118,12 @@ void discoMode(){
     pixels.setPixelColor(0, l_eye_array[cidx]);
     pixels.setPixelColor(1, r_eye_array[cidx]);
     pixels.show();
+
+    // dummy code for testing switch to discoMode
+    unsigned long temp = flash_duration;
+    flash_duration = 50;
+    testFn(10);
+    flash_duration = temp;
   }
 }
 
